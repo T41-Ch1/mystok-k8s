@@ -1,0 +1,29 @@
+name: Apply k8s manifest
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+   
+  apply-k8s-manifest:
+    name: Apply k8s manifest
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+     
+      - name: get gke credentials
+        id: get-credentials
+        uses: google-github-actions/get-gke-credentials@main
+        with:
+          cluster_name: my-kubernetes-test-20200822-gke
+          location: us-central1
+          credentials: ${{ secrets.gcp_credentials }}
+
+# The KUBECONFIG env var is automatically exported and picked up by kubectl.
+      - name: Run shell script
+        id: get-pods
+        run: ./mystok-k8s-start.sh
