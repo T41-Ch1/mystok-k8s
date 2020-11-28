@@ -23,7 +23,7 @@ spec:
         io.kompose.service: mystok-app
     spec:
       containers:
-      - image: dekabitasp/github-actions-test-mystok
+      - image: dekabitasp/mystok-db-test-cloudsql:v1 
         imagePullPolicy: ""
         name: mystok-app
         ports:
@@ -34,8 +34,24 @@ spec:
 #          name: mystok-app-claim0
 #        - mountPath: /usr/local/tomcat/webapps/mystok/WEB-INF/lib
 #          name: mystok-app-claim1
+      - name: cloud-sql-proxy
+        image: gcr.io/cloudsql-docker/gce-proxy:1.17
+        command:
+          - "/cloud_sql_proxy"
+          - "-instances=my-kubernetes-test-20200822:us-central1:mystok-cloudsql=tcp:3306"
+          - "-credential_file=/secrets/service_account.json"
+        securityContext:
+          runAsNonRoot: true
+        volumeMounts:
+        - name: gcp-sa-mystok-secret-volume
+          mountPath: /secrets/
+          readOnly: true
       restartPolicy: Always
       serviceAccountName: ""
+      volumes:
+      - name: gcp-sa-mystok-secret-volume
+        secret:
+          secretName: gcp-sa-mystok-secret
 #      volumes:
 #      - name: mystok-app-claim0
 #        persistentVolumeClaim:
