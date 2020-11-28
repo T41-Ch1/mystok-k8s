@@ -31,3 +31,9 @@ jobs:
       - name: Run shell script
         id: get-pods
         run: ./mystok-k8s-start.sh
+
+      - name: update mystok images
+        run: |
+          kubectl rollout restart deploy mystok-db
+          kubectl rollout restart deploy mystok-app
+          kubectl rollout restart deploy mystok-proxy
