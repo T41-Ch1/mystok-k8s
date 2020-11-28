@@ -25,7 +25,7 @@ jobs:
           
       - name: Create service account secret
         continue-on-error: true
-        run: kubectl create secret generic gcp-sa-mystok-secret --from-literal=service_account.json=${{ secrets.gcp_sa_credentials }}
+        run: kubectl create secret generic gcp-sa-mystok-secret --from-literal=service_account.json='${{ secrets.gcp_sa_credentials }}'
 
 # The KUBECONFIG env var is automatically exported and picked up by kubectl.
       - name: Run shell script
