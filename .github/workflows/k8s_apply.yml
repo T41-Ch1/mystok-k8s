@@ -22,16 +22,20 @@ jobs:
           cluster_name: ${{ secrets.gcp_cluster_name }}
           location: ${{ secrets.gcp_location }}
           credentials: ${{ secrets.gcp_credentials }}
+
+      - name: Decrypt gcp_sa_key.json
+        run: ./.github/scripts/decrypt_secret.sh
+        env:
+          GCP_SA_PASSPHRASE: ${{ secrets.GCP_SA_PASSPHRASE }}
           
       - name: Create service account secret
         continue-on-error: true
-        run: kubectl create secret generic gcp-sa-mystok-secret --from-literal=service_account.json=\
-          \n'${{ secrets.gcp_sa_credentials }}'
+        run: kubectl create secret generic gcp-sa-mystok-secret --from-file=service_account.json=$HOME/secrets/gcp_sa_key.json
 
 # The KUBECONFIG env var is automatically exported and picked up by kubectl.
       - name: Run shell script
         id: get-pods
-        run: ./mystok-k8s-start.sh
+        run: ./.github/scripts/mystok-k8s-start.sh
 
       - name: update mystok images
         run: |
