@@ -31,7 +31,13 @@ spec:
         name: mystok-app
         ports:
         - containerPort: 80
-        resources: {}
+        resources: 
+          requests:
+            memory: 256Mi
+            cpu: 100m
+          limits:
+            memory: 512Mi
+            cpu: 200m
 #        volumeMounts:
 #        - mountPath: /usr/local/tomcat/webapps/
 #          name: mystok-app-claim0
