@@ -8,12 +8,15 @@ metadata:
     io.kompose.service: mystok-app
   name: mystok-app
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       io.kompose.service: mystok-app
   strategy:
-    type: Recreate
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
   template:
     metadata:
       annotations:
