@@ -25,6 +25,13 @@ spec:
         name: mystok-proxy
         ports:
         - containerPort: 80
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 200m
+            memory: 256Mi
 #        volumeMounts:
 #        - mountPath: /etc/nginx/conf.d/
 #          name: mystok-proxy-claim0

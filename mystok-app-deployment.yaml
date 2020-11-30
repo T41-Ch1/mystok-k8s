@@ -55,6 +55,9 @@ spec:
         - name: gcp-sa-mystok-secret-volume
           mountPath: /secrets/
           readOnly: true
+        resources:
+          limits:
+            cpu: 100m
       restartPolicy: Always
       serviceAccountName: ""
       volumes:
