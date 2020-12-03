@@ -43,13 +43,13 @@ spec:
             path: /mystok/top.jsp
             port: 80
           failureThreshold: 5
-          periodSeconds: 5
+          periodSeconds: 10
         livenessProbe:
           httpGet:
             port: 80
             path: /mystok/top.jsp
           failureThreshold: 5
-          periodSeconds: 5
+          periodSeconds: 30
 #        volumeMounts:
 #        - mountPath: /usr/local/tomcat/webapps/
 #          name: mystok-app-claim0
