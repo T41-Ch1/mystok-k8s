@@ -15,3 +15,4 @@ spec:
     targetPort: 80
   selector:
     io.kompose.service: mystok-app
+  type: NodePort

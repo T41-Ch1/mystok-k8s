@@ -5,6 +5,10 @@ metadata:
   annotations:
 #    kubernetes.io/ingress.global-static-ip-name: mystok-ip
 spec:
-  backend:
-    serviceName: mystok-proxy
-    servicePort: 80
+  rules:
+  - http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: mystok-app
+          servicePort: 80
