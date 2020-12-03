@@ -4,7 +4,7 @@ metadata:
   annotations:
     kompose.cmd: kompose --file docker-compose.yml convert
     kompose.version: 1.21.0 ()
-#    cloud.google.com/neg: '{"ingress": true}'
+    cloud.google.com/neg: '{"ingress": true}'
   labels:
     io.kompose.service: mystok-app
   name: mystok-app
@@ -15,4 +15,4 @@ spec:
     targetPort: 80
   selector:
     io.kompose.service: mystok-app
-  type: NodePort
+  type: ClusterIP
