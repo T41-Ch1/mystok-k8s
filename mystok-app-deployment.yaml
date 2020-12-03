@@ -38,6 +38,18 @@ spec:
           limits:
             memory: 512Mi
             cpu: 200m
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          failureThreshold: 5
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            port: 80
+            path: /
+          failureThreshold: 5
+          periodSeconds: 5
 #        volumeMounts:
 #        - mountPath: /usr/local/tomcat/webapps/
 #          name: mystok-app-claim0

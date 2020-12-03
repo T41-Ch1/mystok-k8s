@@ -32,6 +32,18 @@ spec:
           limits:
             cpu: 200m
             memory: 256Mi
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 80
+          failureThreshold: 5
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            port: 80
+            path: /
+          failureThreshold: 5
+          periodSeconds: 5
 #        volumeMounts:
 #        - mountPath: /etc/nginx/conf.d/
 #          name: mystok-proxy-claim0

@@ -5,7 +5,7 @@ metadata:
     io.kompose.service: mystok-proxy
   name: mystok-proxy
   annotations:
-    cloud.google.com/neg: '{"ingress": true}'
+#    cloud.google.com/neg: '{"ingress": true}'
 spec:
   ports:
   - name: "80"
@@ -13,4 +13,4 @@ spec:
     targetPort: 80
   selector:
     io.kompose.service: mystok-proxy
-  type: ClusterIP
+  type: NodePort
