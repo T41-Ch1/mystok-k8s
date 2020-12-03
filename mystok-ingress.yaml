@@ -1,0 +1,10 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: mystok-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: mystok-ip
+spec:
+  backend:
+    serviceName: mystok-proxy
+    servicePort: 80
