@@ -4,6 +4,8 @@ metadata:
   name: mystok-ingress
   annotations:
     kubernetes.io/ingress.global-static-ip-name: mystok-ip
+    networking.gke.io/managed-certificates: mystok-ssl-cert
+    kubernetes.io/ingress.allow-http: "false"
 spec:
   rules:
   - http:
