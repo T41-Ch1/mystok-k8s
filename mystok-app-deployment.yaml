@@ -59,7 +59,7 @@ spec:
         image: gcr.io/cloudsql-docker/gce-proxy:1.17
         command:
           - "/cloud_sql_proxy"
-          - "-instances=my-kubernetes-test-20200822:us-central1:mystok-cloudsql=tcp:3306"
+          - "-instances=my-kubernetes-test-20200822:us-central1:mystok-cloudsql-2=tcp:3306"
           - "-credential_file=/secrets/service_account.json"
         securityContext:
           runAsNonRoot: true
