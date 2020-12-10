@@ -25,6 +25,10 @@ spec:
       labels:
         io.kompose.service: mystok-app
     spec:
+      volumes:
+      - name: google-cloud-key
+        secret:
+          secretName: cloudstorage-key
       containers:
       - image: dekabitasp/mystok-app-upload-test:20201203-2
         imagePullPolicy: ""
@@ -50,6 +54,12 @@ spec:
             path: /mystok/top.jsp
           failureThreshold: 5
           periodSeconds: 30
+        volumeMounts:
+        - name: google-cloud-key
+          mountPath: /var/secrets/google
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/secrets/google/key.json
 #        volumeMounts:
 #        - mountPath: /usr/local/tomcat/webapps/
 #          name: mystok-app-claim0
