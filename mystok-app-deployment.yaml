@@ -50,8 +50,14 @@ spec:
             path: /mystok/top.jsp
           failureThreshold: 5
           periodSeconds: 30
-      - name: cloud-sql-proxy
-        image: gcr.io/cloudsql-docker/gce-proxy:1.17
+        volumeMounts:
+        - name: google-cloud-key
+          mountPath: /var/secrets/google
+        env:
+        - name: GOOGLE_APPLICATION_CREDENTIALS
+          value: /var/secrets/google/key.json
+      - image: gcr.io/cloudsql-docker/gce-proxy:1.17
+        name: cloud-sql-proxy
         command:
           - "/cloud_sql_proxy"
           - "-instances=my-kubernetes-test-20200822:us-central1:mystok-cloudsql-2=tcp:3306"
@@ -71,3 +77,6 @@ spec:
       - name: gcp-sa-mystok-secret-volume
         secret:
           secretName: gcp-sa-mystok-secret
+      - name: google-cloud-key
+        secret:
+          secretName: mystok-cloudsql-sa
