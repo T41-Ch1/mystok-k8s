@@ -50,11 +50,6 @@ spec:
             path: /mystok/top.jsp
           failureThreshold: 5
           periodSeconds: 30
-#        volumeMounts:
-#        - mountPath: /usr/local/tomcat/webapps/
-#          name: mystok-app-claim0
-#        - mountPath: /usr/local/tomcat/webapps/mystok/WEB-INF/lib
-#          name: mystok-app-claim1
       - name: cloud-sql-proxy
         image: gcr.io/cloudsql-docker/gce-proxy:1.17
         command:
@@ -76,10 +71,3 @@ spec:
       - name: gcp-sa-mystok-secret-volume
         secret:
           secretName: gcp-sa-mystok-secret
-#      volumes:
-#      - name: mystok-app-claim0
-#        persistentVolumeClaim:
-#          claimName: mystok-app-claim0
-#      - name: mystok-app-claim1
-#        persistentVolumeClaim:
-#          claimName: mystok-app-claim1
