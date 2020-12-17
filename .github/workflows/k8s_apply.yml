@@ -37,7 +37,7 @@ jobs:
         continue-on-error: true
         run: kubectl create secret generic gcp-sa-mystok-secret --from-file=service_account.json=$HOME/secrets/gcp_sa_key.json
 
-      - name: Create Clous Storage SA secret
+      - name: Create Cloud Storage SA secret
         continue-on-error: true
         run: kubectl create secret generic mystok-cloud-storage-sa-secret --from-file=key.json=$HOME/secrets/mystok-cloudstorage-sa-key.json
 
