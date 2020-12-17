@@ -79,4 +79,4 @@ spec:
           secretName: gcp-sa-mystok-secret
       - name: google-cloud-key
         secret:
-          secretName: mystok-cloudsql-sa
+          secretName: mystok-cloud-storage-sa-secret
