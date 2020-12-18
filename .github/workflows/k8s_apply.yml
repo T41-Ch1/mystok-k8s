@@ -31,7 +31,7 @@ jobs:
       - name: Decrypt mystok-cloudstorage-sa-key.json.gpg 
         run: ./.github/scripts/decrypt_secret-cloud-storage.sh
         env:
-          CLOUDSTORAGE-SA-PASSPHRASE: ${{ secrets.CLOUDSTORAGE-SA-PASSPHRASE }}
+          CLOUDSTORAGE_SA_PASSPHRASE: ${{ secrets.CLOUDSTORAGE_SA_PASSPHRASE }}
           
       - name: Create GCP SA secret
         continue-on-error: true
