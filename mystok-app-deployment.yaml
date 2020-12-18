@@ -26,7 +26,7 @@ spec:
         io.kompose.service: mystok-app
     spec:
       containers:
-      - image: dekabitasp/mystok-app-github-actions
+      - image: dekabitasp/mystok-app-image-conversion-test:202012170957  
         imagePullPolicy: ""
         name: mystok-app
         ports:
