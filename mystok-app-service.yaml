@@ -16,3 +16,4 @@ spec:
   selector:
     io.kompose.service: mystok-app
   type: ClusterIP
+  sessionAffinity: ClientIP
